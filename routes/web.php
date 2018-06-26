@@ -2,6 +2,8 @@
 
 Route::get('/', 'FrontController@index');
 Route::get('/producto/{id}', 'FrontController@show');
+Route::resource('/producto/cart', 'CartDetailController');
+Route::post('/producto/orden', 'CartController@update');
 
 Auth::routes();
 

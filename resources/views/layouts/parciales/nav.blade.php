@@ -17,7 +17,11 @@
     </ul>
     <form class="form-inline mt-2 mt-md-0">
       <a href="{{ route('register') }}" class="btn btn-default nav-link">Registrarse</a>
+      @if(!auth()->user())
       <a href="{{ route('login') }}" class="btn btn-outline-success my-2 my-sm-0 text-white">Login</a>
+      @else
+      <a href="{{ route('home') }}" class="btn btn-outline-success my-2 my-sm-0 text-white">Home</a>
+      @endif
     </form>
     </div>
 </nav>

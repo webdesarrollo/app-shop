@@ -7,10 +7,15 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Dashboard</h4>
-                    
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+
+                    @if (session('notificacion'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                          <strong class="text-wite">
+                             {{session('notificacion')}}!
+                          </strong>
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
                         </div>
                     @endif
                     You are logged in!
@@ -25,7 +30,56 @@
                     <div class="tab-content" id="myTabContent">
                       <div class="tab-pane fade show active" id="carrito" role="tabpanel" aria-labelledby="carrito-tab">Carrito</div>
                       <div class="tab-pane fade" id="pedidos" role="tabpanel" aria-labelledby="pedidos-tab">Mis pedidos</div>
+                    </div><!--NAV-TABS-->
+                    <div class="table-responsive">
+                        <table class="table ">
+                            <thead class="thead-dark">
+                                <tr class="">
+                                    <th>Imagen</th>
+                                    <th>Producto</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio</th>
+                                    <th>Subtotal</th>
+                                    <th>Opciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    @foreach($detalles as $d)
+                                    <tr>
+                                        <td>
+                                            <img src="{{$d->imagen}}" alt="">
+                                        </td>
+                                        <td>
+                                            <a href="{{URL::action('FrontController@show',$d->id)}}" >
+                                                {{$d->producto}}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {{$d->cantidad}}
+                                        </td>
+                                        <td>
+                                            $ {{$d->precio}}
+                                        </td>
+                                        <td>
+                                            $ {{$d->precio*$d->cantidad}}
+                                        </td>
+                                        <td>
+                                            {!!Form::open(['route'=>['cart.destroy',
+                                                $d->cart_detalle],'method'=>'DELETE'])!!}
+                                                   <button type="submit" class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="mdi mdi-delete"></i></button>
+                                            {!!Form::close()!!}
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                            </tbody>
+                        </table>
+                        @if ($detalles->count()>0)
+                        {!! Form::open(['action' => 'CartController@update', 'method' => 'POST'])!!}
+                          <button class="btn btn-primary" type="submit">Realizar pedido</button>
+                        {!! Form::close() !!}
+                        @endif
                     </div>
+
                 </div>
             </div>
         </div>

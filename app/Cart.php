@@ -14,4 +14,9 @@ class Cart extends Model
         'estado',
         'user_id',
     ];
+    
+    public function detalles()
+    {
+        return $this->hasMany(CartDetail::class);
+    }
 }

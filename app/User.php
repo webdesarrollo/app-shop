@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\cart;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function carts(){
+        return $this->hasMany(Cart::class);
+    }
+    
+    public function getCartIdAttribute(){
+        $cart=$this->carts()->where('estado','Active')->first();
+        if($cart){
+            return $cart;
+        }
+        $cart = new Cart();
+        $cart->estado='Active';
+        $cart->user_id=$this->id;
+        $cart->save();
+        return $cart;
+    }
+    
+    
 }
