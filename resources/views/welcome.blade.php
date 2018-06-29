@@ -39,6 +39,22 @@
       </div>
     </div>
 </div>
-
+<div class="row">
+  <div class="col">
+    <h1>Aún no te has registrado?</h1>
+    {!! Form::open(['route'=>'register','method' => 'get', 'class' => 'form-inline']) !!}
+      <div class="form-group">
+        {!!Form::label('Nombre: ')!!}
+        {!!Form::text('name',null,['class'=>'form-	control','required'])!!}
+      </div>
+      <div class="form-group">
+        {!! Form::label('E-mail') !!}
+        {!!Form::email('email',null,['class'=>'form-control'])!!}
+      </div>
+      <div class="form-group">
+        {!! Form::submit('Enviar', ['class'=>'btn btn-primary btn-block']) !!}
+      </div>
+    {!! Form::close() !!}
+  </div>
+</div>
 @endsection
-

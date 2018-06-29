@@ -16,7 +16,7 @@
             <div class="collapse" id="sidebarDropdown1">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{!!URL::to('/admin/productos')!!}">Productos</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{!!URL::to('/almacen/categoria')!!}">Categorias</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{!!URL::to('/admin/categorias')!!}">Categorias</a></li>
                 </ul>
             </div>
         </li>

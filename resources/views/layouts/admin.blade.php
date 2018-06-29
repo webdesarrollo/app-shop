@@ -7,10 +7,11 @@
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
     <link href="{{ asset('css/materialdesignicons.min.css') }}" rel="stylesheet">
+    @yield('estilo')
     <title>ADMIN</title>
   </head>
   <body>
-   
+
     <div class="container-scroller">
         @include('layouts.parciales.adminNav')
         <div class="container-fluid page-body-wrapper">
@@ -19,19 +20,20 @@
                 <div class="content-wrapper">
                     @include('layouts.parciales.breadcrumb')
                     <!--Contenido-->
-                    @yield('contenido')    
-                     
+                    @yield('contenido')
+
                 </div>
                 @include('layouts.parciales.adminFooter')
-            </div>                
-        </div> 
+            </div>
+        </div>
     </div>
-    
+
 <!-- Scripts -->
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
-<!-- Scripts -->   
+    @yield('sripts')
+<!-- Scripts -->
   </body>
 </html>

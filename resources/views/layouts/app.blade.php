@@ -16,18 +16,19 @@
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
 </head>
 <body class="bg-light">
-   
+
     @include('layouts.parciales.nav')
     <main role="main" class="container" style="min-height:80vh">
         @yield('content')
     </main>
     @include('layouts.parciales.footer')
-   
+
 <!-- Scripts -->
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/admin.js') }}"></script>
-<!-- Scripts -->    
+    @yield('sripts')
+<!-- Scripts -->
 </body>
 </html>

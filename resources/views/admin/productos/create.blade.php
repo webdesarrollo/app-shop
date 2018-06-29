@@ -18,6 +18,14 @@
                             {!!Form::number('precio',null,['class'=>'form-control','placeholder'=>'Precio...','required','value'=>"{{old('precio')}}"])!!}
                     </div>
                     <div class = "form-group">
+                      <select name="category_id" class="custom-select" name="category_id">
+                          <option value="0">General</option>
+                          @foreach ($categorias as $categoria)
+                            <option value="{{$categoria->id}}">{{$categoria->nombre}}</option>
+                          @endforeach
+                      </select>
+                    </div>
+                    <div class = "form-group">
                           {!!Form::label('Descripcion: ')!!}
                           {!!Form::text('descripcion',null,['class'=>'form-control','placeholder'=>'Descripcion...','required','value'=>"{{old('descripcion')}}"])!!}
                     </div>
@@ -34,5 +42,5 @@
             </div>
         </div>
     </div>
-</div>                
+</div>
 @endsection

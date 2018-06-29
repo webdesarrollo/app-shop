@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Illuminate\http\Request as Req;
+
 class RegisterController extends Controller
 {
     /*
@@ -69,4 +71,11 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    public function showRegistrationForm(Req $request){
+        $name=$request->input('name');
+        $email=$request->input('email');
+        return View('auth.register')->with(compact('name','email'));
+    }
+
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $table = 'products';
-    
+
     protected $fillable = [
         'nombre',
         'descripcion',
@@ -15,13 +15,20 @@ class Product extends Model
         'precio',
         'category_id'
     ];
-    
+
     public function category(){
         //un producto pertenece a una categoria
         return $this->belongsTo(Category::class);
     }
-    
+
     public function images(){
         return $this->hasMany(ProductImage::class);
+    }
+
+
+    public function getCategoryNameAttribute(){
+      if($this->category)
+      return $this->category->nombre;
+      return 'General';
     }
 }

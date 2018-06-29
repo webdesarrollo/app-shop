@@ -4,11 +4,12 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Product;
+use App\Category;
 use Redirect;
 
 class ProductController extends Controller
 {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -31,7 +32,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.productos.create');
+        $categorias=Category::orderBy('nombre')->get();
+        return view('admin.productos.create',compact('categorias'));
     }
 
     /**
@@ -47,6 +49,7 @@ class ProductController extends Controller
         $producto->precio =$request->input('precio');
         $producto->descripcion =$request->input('descripcion');
         $producto->descripcion_larga =$request->input('descripcion_larga');
+        $producto->category_id=$request->category_id;
         $producto->save();
         return Redirect::to('/admin/productos');
     }
@@ -59,7 +62,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //    
+        //
     }
 
     /**
@@ -71,7 +74,8 @@ class ProductController extends Controller
     public function edit($id)
     {
         $producto = Product::find($id);
-        return view('admin.productos.edit',compact('producto'));
+        $categorias=Category::orderBy('nombre')->get();
+        return view('admin.productos.edit',compact('producto','categorias'));
     }
 
     /**
@@ -88,6 +92,7 @@ class ProductController extends Controller
         $producto->precio =$request->input('precio');
         $producto->descripcion =$request->input('descripcion');
         $producto->descripcion_larga =$request->input('descripcion_larga');
+        $producto->category_di =$request->category_id;
         $producto->update();
         return Redirect::to('/admin/productos');
     }
